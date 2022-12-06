@@ -28,24 +28,39 @@ namespace Ejercicio_GitHub
             // telegrama urgente?
             if (cbUrgente.Checked)
                 tipoTelegrama = 'u';
+            else tipoTelegrama = 'o';
             //Obtengo el número de palabras que forma el telegrama
-            numPalabras = textoTelegrama.Length;
+            int i = 0, c = 1;
+            while (i < textoTelegrama.Length)
+            {
+                if (textoTelegrama[i] == ' ')
+                {
+                    c++;
+                }
+                i++;
+            }
+            numPalabras = c;
             //Si el telegrama es ordinario
             if (tipoTelegrama == 'o')
                 if (numPalabras <= 10)
-                    coste = 25;
+                    coste = 2.5;
                 else
-                    coste = 0.5 * numPalabras;
-            else
+                    coste = 2.5 + 0.5 * (numPalabras - 10);
+
             //Si el telegrama es urgente
             if (tipoTelegrama == 'u')
+            {
                 if (numPalabras <= 10)
+                {
                     coste = 5;
+                    txtPrecio.Text = coste.ToString() + " euros";
+                }
                 else
+                {
                     coste = 5 + 0.75 * (numPalabras - 10);
-            else
-                coste = 0;
-            txtPrecio.Text = coste.ToString() + " euros";
+                    txtPrecio.Text = coste.ToString() + " euros";
+                }
+            }
         }
     }
 }
